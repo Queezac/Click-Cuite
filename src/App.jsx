@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import useGameStore from "./stores/game-store";
 import conversionUtils from "./utils/conversion";
+import { useEventStore } from "./utils/events";
 import upgradeList from "./utils/upgrade";
 
 function App() {
@@ -8,15 +9,18 @@ function App() {
     alcoholCount,
     alcoholPerClick,
     alcoholPerSecond,
+    addAlcoholOnSecond,
+    addAlcoholOnClick,
     addAlcohol,
     buyUpgrade,
-    saveToLocalStorage,
   } = useGameStore();
+
+  const { activeEvent, triggerRandomEvent } = useEventStore();
 
   useEffect(() => {
     const interval = setInterval(() => {
       if (alcoholPerSecond > 0) {
-        addAlcohol(alcoholPerSecond);
+        addAlcoholOnSecond(alcoholPerSecond);
         const currentAlcoholCount = useGameStore.getState().alcoholCount;
         document.title = `${conversionUtils.mLToString(
           currentAlcoholCount
@@ -24,7 +28,21 @@ function App() {
       }
     }, 1000);
     return () => clearInterval(interval);
-  }, [alcoholPerSecond, addAlcohol, saveToLocalStorage]);
+  }, [alcoholPerSecond, addAlcohol, addAlcoholOnSecond]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const chance = Math.random();
+      if (chance < 1) {
+        triggerRandomEvent();
+      }
+
+      clearInterval(interval); // Nettoie l'intervalle après le nombre maximum d'exécutions
+      console.log("Interval nettoyé après");
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [triggerRandomEvent]);
 
   return (
     <div className="h-screen bg-gray-900 text-white p-5">
@@ -54,7 +72,7 @@ function App() {
 
         <button
           id="addAlcool"
-          onClick={() => addAlcohol(alcoholPerClick)}
+          onClick={() => addAlcoholOnClick(alcoholPerClick)}
           className="mt-3 transition-transform transform active:scale-90"
         >
           <img src="/public/alcool/huitsix.png" alt="8.6 click" className="w-40" />
