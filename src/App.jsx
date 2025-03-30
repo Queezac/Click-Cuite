@@ -78,6 +78,7 @@ function App() {
             >
               <strong>{upgrade.name}</strong>
               <p>{upgrade.description}</p>
+              <p>x{currentQuantity}</p>
               <p>
                 <em>Coût :</em> {conversionUtils.mLToString(cost)}
               </p>
