@@ -9,9 +9,20 @@ const useGameStore = create(
     alcoholPerSecond: 0,
     upgrades: {}, // List of upgrades {id: count}
 
-    addAlcohol: (amount = 1) => {
+    clickMultiplier: 1,
+    secondMultiplier: 1,
+
+    addAlcoholOnClick: (amount = 1) => {
+      const { clickMultiplier } = get();
       set((state) => ({
-        alcoholCount: state.alcoholCount + amount,
+        alcoholCount: state.alcoholCount + amount * clickMultiplier,
+      }));
+    },
+
+    addAlcoholOnSecond: (amount = 1) => {
+      const { secondMultiplier } = get();
+      set((state) => ({
+        alcoholCount: state.alcoholCount + amount * secondMultiplier,
       }));
     },
 
@@ -41,16 +52,6 @@ const useGameStore = create(
         console.warn("Pas assez d'alcool pour acheter cette amélioration.");
       }
     },
-    setAlcoholPerClick: (amount) => {
-      set(() => ({
-        alcoholPerClick: amount,
-      }));
-    },
-    setAlcoholPerSecond: (amount) => {
-      set(() => ({
-        alcoholPerSecond: amount,
-      }));
-    },
 
     addAlcoholPerClick: (amount) => {
       set((state) => ({
@@ -61,6 +62,17 @@ const useGameStore = create(
     addAlcoholPerSecond: (amount) => {
       set((state) => ({
         alcoholPerSecond: state.alcoholPerSecond + amount,
+      }));
+    },
+
+    setClickMultiplier: (multiplier) => {
+      set(() => ({
+        clickMultiplier: multiplier,
+      }));
+    },
+    setSecondMultiplier: (multiplier) => {
+      set(() => ({
+        secondMultiplier: multiplier,
       }));
     },
   })),

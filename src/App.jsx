@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import useGameStore from "./stores/game-store";
 import conversionUtils from "./utils/conversion";
+import { useEventStore } from "./utils/events";
 import upgradeList from "./utils/upgrade";
 
 function App() {
@@ -8,15 +9,18 @@ function App() {
     alcoholCount,
     alcoholPerClick,
     alcoholPerSecond,
+    addAlcoholOnSecond,
+    addAlcoholOnClick,
     addAlcohol,
     buyUpgrade,
-    saveToLocalStorage,
   } = useGameStore();
+
+  const { activeEvent, triggerRandomEvent } = useEventStore();
 
   useEffect(() => {
     const interval = setInterval(() => {
       if (alcoholPerSecond > 0) {
-        addAlcohol(alcoholPerSecond);
+        addAlcoholOnSecond(alcoholPerSecond);
         const currentAlcoholCount = useGameStore.getState().alcoholCount;
         document.title = `Click Cuite - ${conversionUtils.mLToString(
           currentAlcoholCount
@@ -24,7 +28,21 @@ function App() {
       }
     }, 1000);
     return () => clearInterval(interval);
-  }, [alcoholPerSecond, addAlcohol, saveToLocalStorage]);
+  }, [alcoholPerSecond, addAlcohol, addAlcoholOnSecond]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const chance = Math.random();
+      if (chance < 1) {
+        triggerRandomEvent();
+      }
+
+      clearInterval(interval); // Nettoie l'intervalle après le nombre maximum d'exécutions
+      console.log("Interval nettoyé après");
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [triggerRandomEvent]);
 
   return (
     <div style={{ textAlign: "center", padding: "20px" }}>
@@ -43,7 +61,7 @@ function App() {
       </p>
 
       <button
-        onClick={() => addAlcohol(alcoholPerClick)}
+        onClick={() => addAlcoholOnClick(alcoholPerClick)}
         style={{
           padding: "10px 20px",
           fontSize: "16px",
@@ -53,6 +71,15 @@ function App() {
       >
         Boire un verre
       </button>
+
+      {activeEvent ? (
+        <div style={{ padding: "10px" }}>
+          <h2>Événement actif : {activeEvent.name}</h2>
+          <p>{activeEvent.description}</p>
+        </div>
+      ) : (
+        <p>Aucun événement actif</p>
+      )}
 
       <h2>Améliorations</h2>
       <ul style={{ listStyle: "none", padding: 0 }}>
