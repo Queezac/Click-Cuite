@@ -70,70 +70,102 @@ function App() {
           Alcool par seconde : {conversionUtils.mLToString(alcoholPerSecond)}
         </p>
 
-        <button
-          id="addAlcool"
-          onClick={() => addAlcoholOnClick(alcoholPerClick)}
-          className="mt-3 transition-transform transform active:scale-90"
-        >
-          <img src="/public/alcool/huitsix.png" alt="8.6 click" className="w-40" />
-        </button>
-      </div>
-
-      {/* 🔵 Événements (carré en haut à droite) */}
-      <div className="col-span-1 bg-gray-700 rounded-md p-4">
-        <p className="text-center">Attendez un événement</p>
-      </div>
-
-      {/* 🔶 Améliorations (carré milieu droite) */}
-      <div className="col-span-1 bg-gray-800 rounded-md p-4">
-        <h2 className="text-xl font-bold text-center mb-3">Améliorations</h2>
-        <div className="flex justify-center space-x-3">
-          <button className="actionButton">
-            <img src="/public/icons/icon1.png" alt="Action 1" className="w-10" />
-          </button>
-          <button className="actionButton">
-            <img src="/public/icons/icon2.png" alt="Action 2" className="w-10" />
-          </button>
-          <button className="actionButton">
-            <img src="/public/icons/icon3.png" alt="Action 3" className="w-10" />
+          <button
+            id="addAlcool"
+            onClick={() => addAlcoholOnClick(alcoholPerClick)}
+            className="mt-3 transition-transform transform active:scale-90"
+          >
+            <img
+              src="/public/alcool/huitsix.png"
+              alt="8.6 click"
+              className="w-40"
+            />
           </button>
         </div>
-      </div>
 
-      {/* 🛒 Shop (carré en bas droite) */}
-      <div className="col-span-1 bg-gray-900 rounded-md p-4">
-        <h2 className="text-xl font-bold text-center mb-3">Shop</h2>
-        <ul className="list-none p-0">
-          {upgradeList.map((upgrade) => {
-            const currentQuantity = useGameStore.getState().upgrades[upgrade.id] || 0;
-            const cost = Math.floor(
-              upgrade.baseCost * Math.pow(upgrade.upgradeCostMultiplier, currentQuantity)
-            );
+        {/* 🔵 Événements (carré en haut à droite) */}
+        <div className="col-span-1 bg-gray-700 rounded-md p-4">
+          {activeEvent ? (
+            <div style={{ padding: "10px" }}>
+              <p className="text-center">
+                Événement actif : {activeEvent.name}
+              </p>
+              <p className="text-center">{activeEvent.description}</p>
+            </div>
+          ) : (
+            <p className="text-center">Attendez un événement</p>
+          )}
+        </div>
 
-            return (
-              <li key={upgrade.id} className="mb-4 p-3 border border-gray-700 rounded-md">
-                <strong>{upgrade.name}</strong>
-                <p>{upgrade.description}</p>
-                <p>x{currentQuantity}</p>
-                <p>
-                  <em>Coût :</em> {conversionUtils.mLToString(cost)}
-                </p>
-                <button
-                  onClick={() => buyUpgrade(upgrade.id)}
-                  disabled={alcoholCount < cost}
-                  className={`px-3 py-2 rounded text-white ${
-                    alcoholCount >= cost ? "bg-green-500 cursor-pointer" : "bg-gray-600 cursor-not-allowed"
-                  }`}
+        {/* 🔶 Améliorations (carré milieu droite) */}
+        <div className="col-span-1 bg-gray-800 rounded-md p-4">
+          <h2 className="text-xl font-bold text-center mb-3">Améliorations</h2>
+          <div className="flex justify-center space-x-3">
+            <button className="actionButton">
+              <img
+                src="/public/icons/icon1.png"
+                alt="Action 1"
+                className="w-10"
+              />
+            </button>
+            <button className="actionButton">
+              <img
+                src="/public/icons/icon2.png"
+                alt="Action 2"
+                className="w-10"
+              />
+            </button>
+            <button className="actionButton">
+              <img
+                src="/public/icons/icon3.png"
+                alt="Action 3"
+                className="w-10"
+              />
+            </button>
+          </div>
+        </div>
+
+        {/* 🛒 Shop (carré en bas droite) */}
+        <div className="col-span-1 bg-gray-900 rounded-md p-4">
+          <h2 className="text-xl font-bold text-center mb-3">Shop</h2>
+          <ul className="list-none p-0">
+            {upgradeList.map((upgrade) => {
+              const currentQuantity =
+                useGameStore.getState().upgrades[upgrade.id] || 0;
+              const cost = Math.floor(
+                upgrade.baseCost *
+                  Math.pow(upgrade.upgradeCostMultiplier, currentQuantity)
+              );
+
+              return (
+                <li
+                  key={upgrade.id}
+                  className="mb-4 p-3 border border-gray-700 rounded-md"
                 >
-                  Acheter
-                </button>
-              </li>
-            );
-          })}
-        </ul>
+                  <strong>{upgrade.name}</strong>
+                  <p>{upgrade.description}</p>
+                  <p>x{currentQuantity}</p>
+                  <p>
+                    <em>Coût :</em> {conversionUtils.mLToString(cost)}
+                  </p>
+                  <button
+                    onClick={() => buyUpgrade(upgrade.id)}
+                    disabled={alcoholCount < cost}
+                    className={`px-3 py-2 rounded text-white ${
+                      alcoholCount >= cost
+                        ? "bg-green-500 cursor-pointer"
+                        : "bg-gray-600 cursor-not-allowed"
+                    }`}
+                  >
+                    Acheter
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
   );
 }
 
