@@ -1,5 +1,8 @@
 import useGameStore from "../stores/game-store";
 
+// chiffres pas bon
+
+
 const upgradeList = [
     {
       id: 1,
