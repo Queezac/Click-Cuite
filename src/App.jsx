@@ -17,6 +17,10 @@ function App() {
     const interval = setInterval(() => {
       if (alcoholPerSecond > 0) {
         addAlcohol(alcoholPerSecond);
+        const currentAlcoholCount = useGameStore.getState().alcoholCount;
+        document.title = `Click Cuite - ${conversionUtils.mLToString(
+          currentAlcoholCount
+        )}`;
       }
     }, 1000);
     return () => clearInterval(interval);

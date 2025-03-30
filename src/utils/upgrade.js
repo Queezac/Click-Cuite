@@ -8,8 +8,8 @@ const upgradeList = [
     baseCost: 100,
     unlockAt: 10,
     effect: () => {
-      const { alcoholPerClick, setAlcoholPerClick } = useGameStore.getState();
-      setAlcoholPerClick(alcoholPerClick + 10);
+      const { addAlcoholPerClick } = useGameStore.getState();
+      addAlcoholPerClick(10);
     },
     upgradeCostMultiplier: 1.25,
   },
@@ -20,8 +20,8 @@ const upgradeList = [
     baseCost: 200,
     unlockAt: 50,
     effect: () => {
-      const { alcoholPerSecond, setAlcoholPerSecond } = useGameStore.getState();
-      setAlcoholPerSecond(alcoholPerSecond + 10);
+      const { addAlcoholPerSecond } = useGameStore.getState();
+      addAlcoholPerSecond(10);
     },
     upgradeCostMultiplier: 1.25,
   },

@@ -51,6 +51,18 @@ const useGameStore = create(
         alcoholPerSecond: amount,
       }));
     },
+
+    addAlcoholPerClick: (amount) => {
+      set((state) => ({
+        alcoholPerClick: state.alcoholPerClick + amount,
+      }));
+    },
+
+    addAlcoholPerSecond: (amount) => {
+      set((state) => ({
+        alcoholPerSecond: state.alcoholPerSecond + amount,
+      }));
+    },
   })),
   {
     name: "clickandcuit:gameState",
