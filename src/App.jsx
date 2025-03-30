@@ -72,15 +72,6 @@ function App() {
         Boire un verre
       </button>
 
-      {activeEvent ? (
-        <div style={{ padding: "10px" }}>
-          <h2>Événement actif : {activeEvent.name}</h2>
-          <p>{activeEvent.description}</p>
-        </div>
-      ) : (
-        <p>Aucun événement actif</p>
-      )}
-
       <h2>Améliorations</h2>
       <ul style={{ listStyle: "none", padding: 0 }}>
         {upgradeList.map((upgrade) => {
