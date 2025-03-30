@@ -46,7 +46,7 @@ function App() {
 
   return (
     <div className="h-screen bg-gray-900 text-white p-5">
-    {/* 🟢 Navbar */}
+    {/* Navbar */}
     <nav className="flex justify-start space-x-4 mb-5">
       <button className="navButton">
         <strong>Statistiques</strong>
@@ -59,7 +59,7 @@ function App() {
       </button>
     </nav>
 
-    {/* 🟢 Layout principal avec GRID */}
+    {/* Layout principal avec GRID */}
     <div className="grid grid-cols-4 grid-rows-[3fr_1fr_2fr] gap-4 h-full">
       {/* 🟠 Zone principale (grosse zone à gauche) */}
       <div className="col-span-3 row-span-3 bg-gray-800 rounded-md p-5 flex flex-col items-center justify-center">
