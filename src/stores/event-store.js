@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import useGameStore from "../stores/game-store";
+import useGameStore from "./game-store";
 
 const { setClickMultiplier, setSecondMultiplier } = useGameStore.getState();
 
