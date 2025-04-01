@@ -6,8 +6,9 @@ const { setClickMultiplier, setSecondMultiplier } = useGameStore.getState();
 const eventsList = [
   {
     id: 1,
+    image: "/public/evenement/happyhour.png",
     name: "Happy Hour",
-    description: "Tous les gains sont doublés pendant 5 minutes !",
+    description: "Hé patron, remets-moi ça, je tiens encore debout !", //Les prix sont réduits, mais la consommation augmente !
     unlockAt: 1,
     onStart: () => {
       setClickMultiplier(2);
@@ -21,8 +22,73 @@ const eventsList = [
   },
   {
     id: 2,
+    image: "/public/evenement/verresdoubles.png",
+    name: "Verres Doublés",
+    description: "Ça marche, mais si tu tombes, c’est pas moi qui te ramasse !", //Double les cliques !
+    unlockAt: 1,
+    onStart: () => {
+      setClickMultiplier(0.5);
+      setSecondMultiplier(0.5);
+    },
+    onEnd: () => {
+      setClickMultiplier(1);
+      setSecondMultiplier(1);
+    },
+    duration: 2 * 60 * 1000,
+  },
+  {
+    id: 3,
+    image: "/public/evenement/alcoolfort.png",
+    name: "Alcool Fort",
+    description: "Hips… C’est moi ou le sol bouge tout seul ?", //La boisson est plus corsée, +2% de L consommé en +
+    unlockAt: 1,
+    onStart: () => {
+      setClickMultiplier(0.5);
+      setSecondMultiplier(0.5);
+    },
+    onEnd: () => {
+      setClickMultiplier(1);
+      setSecondMultiplier(1);
+    },
+    duration: 5 * 60 * 1000,
+  },
+  {
+    id: 4,
+    image: "/public/evenement/serviceexpress.png",
+    name: "Service Express",
+    description: "Allez, on garde le rythme ! Plus ils boivent, plus les pourboires tombent !", //Les serveurs apportent les verres plus rapidement, boostant la consommation automatique !
+    unlockAt: 1,
+    onStart: () => {
+      setClickMultiplier(0.5);
+      setSecondMultiplier(0.5);
+    },
+    onEnd: () => {
+      setClickMultiplier(1);
+      setSecondMultiplier(1);
+    },
+    duration: 5 * 60 * 1000,
+  },
+  {
+    id: 5,
+    image: "/public/evenement/panneseche.png",
     name: "Panne sèche",
-    description: "Tous les gains sont divisés par 2 pendant 5 minutes.",
+    description: "Tous les gains sont divisés par 2 pendant 5 minutes.", //Tous les gains sont divisés par 2 pendant 5 minutes.
+    unlockAt: 1,
+    onStart: () => {
+      setClickMultiplier(0.5);
+      setSecondMultiplier(0.5);
+    },
+    onEnd: () => {
+      setClickMultiplier(1);
+      setSecondMultiplier(1);
+    },
+    duration: 5 * 60 * 1000,
+  },
+  {
+    id: 6,
+    image: "/public/evenement/pasdevenement.png",
+    name: "pasevenement",
+    description: "Attendez un événement",
     unlockAt: 1,
     onStart: () => {
       setClickMultiplier(0.5);
