@@ -108,19 +108,18 @@ function App() {
                   onClick={() => buyUpgrade(upgrade.id)}
                   disabled={alcoholCount < cost}
                   className={`w-full px-3 py-2 mt-2 rounded-[10px] text-white flex justify-between items-center ${
-                    alcoholCount >= cost
-                      ? "bg-[#14191F] cursor-pointer"
-                      : "bg-[#313B47] cursor-not-allowed"
+                    alcoholCount >= cost ? "bg-[#14191F] cursor-pointer" : "bg-[#313B47] cursor-not-allowed"
                   }`}
                 >
-                  <img
-                    src={upgrade.image}
-                    alt={upgrade.name}
-                    className="w-10 h-10"
-                  />
-                  <p>{upgrade.name}</p>
-                  <strong className="text-[#5F6EFF]">{currentQuantity}</strong>
-                  <p>{conversionUtils.mLToString(cost)}</p>
+                  <div className="flex items-center gap-2 w-[60%]">
+                    <img src={upgrade.image} alt={upgrade.name} className="w-10 h-10 flex-shrink-0" />
+                    <p className="text-[0.7vw] truncate">{upgrade.name}</p> 
+                  </div>
+
+                  <div className="flex items-center w-[38%]">
+                    <strong className="text-[#5F6EFF] text-center w-[30%]">{currentQuantity}</strong>  
+                    <strong  className="text-[0.8vw] text-right w-[70%] ml-auto">{conversionUtils.mLToString(cost)}</strong >
+                  </div>
                 </button>
               );
             })}
