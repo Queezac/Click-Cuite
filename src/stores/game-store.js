@@ -1,10 +1,12 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import upgradeList from "../utils/upgrade";
+import { useEventStore } from "./event-store";
 
+const INITIAL_VALUE = 0;
 const useGameStore = create(
   persist((set, get) => ({
-    alcoholCount: 100000000, // Initial value are in mL
+    alcoholCount: INITIAL_VALUE, // Initial value are in mL
     alcoholPerClick: 1,
     alcoholPerSecond: 0,
     upgrades: {
@@ -120,8 +122,9 @@ const useGameStore = create(
       }));
     },
     resetGame: () => {
+      useEventStore.getState().clearEvent();
       set(() => ({
-        alcoholCount: 100000000,
+        alcoholCount: INITIAL_VALUE,
         alcoholPerClick: 1,
         alcoholPerSecond: 0,
         upgrades: {},

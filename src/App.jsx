@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import useCounterAnimated from "./hooks/useCounterAnimated";
 import { useEventStore } from "./stores/event-store";
 import useGameStore from "./stores/game-store";
 import conversionUtils from "./utils/conversion";
@@ -18,8 +17,6 @@ function App() {
   } = useGameStore();
 
   const { activeEvent } = useEventStore();
-
-  const displayedAlcoholCount = useCounterAnimated(alcoholCount, 100);
 
   const unlockedEvolutions = upgradeList
     .map((upgrade) => {
@@ -55,6 +52,16 @@ function App() {
     }, 100);
     return () => clearInterval(interval);
   }, [alcoholPerSecond, addAlcoholOnSecond]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (!activeEvent && Math.random() < 0.2) {
+        useEventStore.getState().triggerRandomEvent();
+      }
+    }, 10);
+
+    return () => clearInterval(interval);
+  });
 
   return (
     <div className="w-screen h-screen bg-[#14171F] text-white p-5 flex gap-x-8">
@@ -109,7 +116,7 @@ function App() {
         {/* Zone principale (Clicker) */}
         <div className="flex-1 bg-[url('background_click.png')] bg-cover bg-center border-2 border-[#5F6EFF] rounded-md p-5 flex flex-col items-center justify-center">
           <p className="text-3xl font-bold">
-            {conversionUtils.mLToString(displayedAlcoholCount)}{" "}
+            {conversionUtils.mLToString(alcoholCount)}{" "}
           </p>
           <p className="text-lg font-semibold">
             Alcool par seconde : {conversionUtils.mLToString(alcoholPerSecond)}
