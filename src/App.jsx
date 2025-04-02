@@ -24,13 +24,13 @@ function App() {
   useEffect(() => {
     const interval = setInterval(() => {
       if (alcoholPerSecond > 0) {
-        addAlcoholOnSecond(alcoholPerSecond);
+        addAlcoholOnSecond(alcoholPerSecond / 10);
         const currentAlcoholCount = useGameStore.getState().alcoholCount;
         document.title = `${conversionUtils.mLToString(
           currentAlcoholCount
         )} - Click Cuite`;
       }
-    }, 1000);
+    }, 100);
     return () => clearInterval(interval);
   }, [alcoholPerSecond, addAlcoholOnSecond]);
 
@@ -76,14 +76,14 @@ function App() {
           <div className="flex space-x-3">
             <button className="actionButton">
               <img
-                src="shop/ALCOOLFORT.svg"
+                src="/shop/ALCOOLFORT.svg"
                 alt="Action 1"
                 className="w-15 h-15"
               />
             </button>
             <button className="actionButton">
               <img
-                src="shop/ALCOOLFORT.svg"
+                src="/shop/ALCOOLFORT.svg"
                 alt="Action 2"
                 className="w-15 h-15"
               />
@@ -134,9 +134,7 @@ function App() {
           {/* Affichage dynamique de l'image de l'événement */}
           <img
             src={
-              activeEvent
-                ? activeEvent.image
-                : "/public/evenement/pasdevenement.png"
+              activeEvent ? activeEvent.image : "/evenement/pasdevenement.png"
             }
             alt=""
             className="w-full"
