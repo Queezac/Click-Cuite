@@ -15,6 +15,17 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+img {
+  pointer-events: none;
+  user-select: none;
+}
+img:active {
+  cursor: default;
+}
+img {
+  -webkit-touch-callout: none;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -64,4 +75,10 @@ h1 {
 .navButton:hover {
   background-color: #212934;
   border: transparent 3px solid;
+}
+
+.disabled {
+  filter: grayscale(40%) brightness(80%);
+  opacity: 0.8;
+  pointer-events: none;
 }
