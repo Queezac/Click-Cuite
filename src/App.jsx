@@ -116,11 +116,10 @@ function App() {
         {/* Zone principale (Clicker) */}
         <div className="flex-1 bg-[url('background_click.png')] bg-cover bg-center border-2 border-[#5F6EFF] rounded-md p-5 flex flex-col items-center justify-center">
           <p className="text-[2.5vw] font-bold">
-            {conversionUtils.mLToString(displayedAlcoholCount)}{" "}
+            {conversionUtils.mLToString(alcoholCount)}{" "}
           </p>
           <p className="text-[1vw] font-semibold">
-            Alcool par seconde :{" "}
-            {conversionUtils.mLToString(displayedAlcoholPerSecond)}
+            Alcool par seconde : {conversionUtils.mLToString(alcoholPerSecond)}
           </p>
           <button
             onClick={() => addAlcoholOnClick(alcoholPerClick)}
