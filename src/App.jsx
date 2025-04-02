@@ -54,7 +54,7 @@ function App() {
         </nav>
 
         {/* Zone principale (Clicker) */}
-        <div className="flex-1 bg-[url('background_click.png')] bg-cover bg-center border-2 rounded-md p-5 flex flex-col items-center justify-center">
+        <div className="flex-1 bg-[url('background_click.png')] bg-cover bg-center border-2 border-[#5F6EFF] rounded-md p-5 flex flex-col items-center justify-center">
           <p className="text-3xl font-bold">
             {conversionUtils.mLToString(displayedAlcoholCount)}{" "}
           </p>
@@ -106,7 +106,7 @@ function App() {
                   className={`w-full px-3 py-2 mt-2 rounded-[10px] text-white flex justify-between items-center border-1 border-[#313b47]
                     ${
                       alcoholCount >= cost
-                        ? "bg-[#14171F] border-[#14171F] cursor-pointer hover:border-1 hover:border-[white] hover:shadow-inner active:bg-[#0d141b]"
+                        ? "bg-[#14171F] border-[#14171F] cursor-pointer hover:border-1 hover:border-[#5F6EFF] hover:shadow-inner active:bg-[#0d141b]"
                         : "bg-[#313B47]"
                     }`}
                 >
