@@ -95,9 +95,9 @@ function App() {
                   key={upgrade.id}
                   onClick={() => buyUpgrade(upgrade.id)}
                   disabled={alcoholCount < cost}
-                  className={`w-full px-3 py-2 mt-2 rounded-[10px] text-white flex justify-between items-center 
+                  className={`w-full px-3 py-2 mt-2 rounded-[10px] text-white flex justify-between items-center border-1 border-[#313b47]
                     ${alcoholCount >= cost 
-                      ? "bg-[#14191F] cursor-pointer active:bg-[#0d141b]"  // Darker background on active
+                      ? "bg-[#14191F] border-[#14191F] cursor-pointer hover:border-1 hover:border-[white] hover:shadow-inner active:bg-[#0d141b]"
                       : "bg-[#313B47]"
                     }`}
                 >
