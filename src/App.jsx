@@ -13,6 +13,7 @@ function App() {
     addAlcoholOnSecond,
     addAlcoholOnClick,
     buyUpgrade,
+    resetGame,
   } = useGameStore();
 
   const { activeEvent } = useEventStore();
@@ -36,6 +37,7 @@ function App() {
 
   return (
     <div className="w-screen h-screen bg-[#14171F] text-white p-5 flex gap-x-8">
+      <button onClick={resetGame}>reset</button>
       {/* Gauche : Navbar + Zone principale */}
       <div className="w-2/3 flex flex-col gap-4">
         {/* Navbar */}
@@ -75,7 +77,12 @@ function App() {
         <div className="bg-gray-800 rounded-md p-4 flex flex-col">
           <div className="flex space-x-3">
             <button className="actionButton">
-              <img src="amélioration\clientregulier2.png" alt="Action 1" className="w-15 h-15" /> {/* Améliorations */}
+              <img
+                src="amélioration\clientregulier2.png"
+                alt="Action 1"
+                className="w-15 h-15"
+              />{" "}
+              {/* Améliorations */}
             </button>
           </div>
         </div>
@@ -87,7 +94,8 @@ function App() {
               const currentQuantity =
                 useGameStore.getState().upgrades[upgrade.id] || 0;
               const cost = Math.floor(
-                upgrade.baseCost * Math.pow(upgrade.upgradeCostMultiplier, currentQuantity)
+                upgrade.baseCost *
+                  Math.pow(upgrade.upgradeCostMultiplier, currentQuantity)
               );
 
               return (
@@ -96,23 +104,44 @@ function App() {
                   onClick={() => buyUpgrade(upgrade.id)}
                   disabled={alcoholCount < cost}
                   className={`w-full px-3 py-2 mt-2 rounded-[10px] text-white flex justify-between items-center border-1 border-[#313b47]
-                    ${alcoholCount >= cost 
-                      ? "bg-[#14171F] border-[#14171F] cursor-pointer hover:border-1 hover:border-[white] hover:shadow-inner active:bg-[#0d141b]"
-                      : "bg-[#313B47]"
+                    ${
+                      alcoholCount >= cost
+                        ? "bg-[#14171F] border-[#14171F] cursor-pointer hover:border-1 hover:border-[white] hover:shadow-inner active:bg-[#0d141b]"
+                        : "bg-[#313B47]"
                     }`}
                 >
                   <div className="flex items-center gap-2 w-[60%]">
                     <img
                       src={upgrade.image}
                       alt={upgrade.name}
-                      className={`w-10 h-10 flex-shrink-0 ${alcoholCount < cost ? 'opacity-50' : ''}`}
+                      className={`w-10 h-10 flex-shrink-0 ${
+                        alcoholCount < cost ? "opacity-50" : ""
+                      }`}
                     />
-                    <p className={`text-[0.7vw] truncate ${alcoholCount < cost ? 'opacity-50' : ''}`}>{upgrade.name}</p>
+                    <p
+                      className={`text-[0.7vw] truncate ${
+                        alcoholCount < cost ? "opacity-50" : ""
+                      }`}
+                    >
+                      {upgrade.name}
+                    </p>
                   </div>
 
                   <div className="flex items-center w-[38%]">
-                    <strong className={`text-[#5F6EFF] text-center w-[30%] ${alcoholCount < cost ? 'opacity-50' : ''}`}>{currentQuantity}</strong>
-                    <strong className={`text-[0.8vw] text-right w-[70%] ml-auto ${alcoholCount < cost ? 'opacity-50' : ''}`}>{conversionUtils.mLToString(cost)}</strong>
+                    <strong
+                      className={`text-[#5F6EFF] text-center w-[30%] ${
+                        alcoholCount < cost ? "opacity-50" : ""
+                      }`}
+                    >
+                      {currentQuantity}
+                    </strong>
+                    <strong
+                      className={`text-[0.8vw] text-right w-[70%] ml-auto ${
+                        alcoholCount < cost ? "opacity-50" : ""
+                      }`}
+                    >
+                      {conversionUtils.mLToString(cost)}
+                    </strong>
                   </div>
                 </button>
               );

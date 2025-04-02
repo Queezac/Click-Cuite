@@ -17,9 +17,8 @@ const useCounterAnimated = (targetValue, duration = 500) => {
     const animate = (currentTime) => {
       const elapsedTime = currentTime - startTime;
       const progress = Math.min(elapsedTime / duration, 1);
-      const easedProgress = progress;
       const interpolatedValue = Math.floor(
-        startValue + (endValue - startValue) * easedProgress
+        startValue + (endValue - startValue) * progress
       );
 
       setAnimatedValue(interpolatedValue);

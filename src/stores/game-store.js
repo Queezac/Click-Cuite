@@ -7,7 +7,7 @@ const useGameStore = create(
     alcoholCount: 0, // Initial value are in mL
     alcoholPerClick: 1,
     alcoholPerSecond: 0,
-    upgrades: {}, // List of upgrades {id: count}
+    upgrades: {}, // List of upgrades {id: {count: number, multiplier: number}}
 
     clickMultiplier: 1,
     secondMultiplier: 1,
@@ -73,6 +73,16 @@ const useGameStore = create(
     setSecondMultiplier: (multiplier) => {
       set(() => ({
         secondMultiplier: multiplier,
+      }));
+    },
+    resetGame: () => {
+      set(() => ({
+        alcoholCount: 0,
+        alcoholPerClick: 1,
+        alcoholPerSecond: 0,
+        upgrades: {},
+        clickMultiplier: 1,
+        secondMultiplier: 1,
       }));
     },
   })),
