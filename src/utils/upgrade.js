@@ -14,7 +14,26 @@ const upgradeList = [
       const { addAlcoholPerSecond } = useGameStore.getState();
       addAlcoholPerSecond(0.1);
     },
+    onEvolution: (quantity, oldEvolution, newEvolution) => {
+      const { addAlcoholPerSecond } = useGameStore.getState();
+      console.log(newEvolution.multiplier - (oldEvolution?.multiplier ?? 1));
+      addAlcoholPerSecond(
+        0.1 *
+          quantity *
+          (newEvolution.multiplier - (oldEvolution?.multiplier ?? 1))
+      );
+    },
     upgradeCostMultiplier: 1.2,
+    evolution: [
+      {
+        name: "Verre XXL +",
+        image: "/amélioration/clientregulier2.png",
+        description: "Produit automatiquement 0.2 cl/s",
+        multiplier: 2,
+        cost: 200,
+        unlockAt: 10,
+      },
+    ],
   },
   {
     id: 2,

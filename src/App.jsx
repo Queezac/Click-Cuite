@@ -13,6 +13,7 @@ function App() {
     addAlcoholOnSecond,
     addAlcoholOnClick,
     buyUpgrade,
+    evoluateUpgrade,
     resetGame,
   } = useGameStore();
 
@@ -20,7 +21,27 @@ function App() {
 
   const displayedAlcoholCount = useCounterAnimated(alcoholCount, 100);
 
-  const displayedAlcoholPerSecond = useCounterAnimated(alcoholPerSecond, 500);
+  const unlockedEvolutions = upgradeList
+    .map((upgrade) => {
+      const currentQuantity =
+        useGameStore.getState().upgrades?.[upgrade.id]?.count ?? 0;
+
+      const currentEvolutionIndex =
+        useGameStore.getState().upgrades?.[upgrade.id]?.currentEvolution ?? -1;
+
+      const availableEvolution = upgrade.evolution?.find(
+        (evolution, index) =>
+          evolution.unlockAt <= currentQuantity && index > currentEvolutionIndex
+      );
+
+      return availableEvolution
+        ? {
+            upgradeId: upgrade.id,
+            evolution: availableEvolution,
+          }
+        : null;
+    })
+    .filter(Boolean);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -44,9 +65,21 @@ function App() {
           {/* Logo à gauche */}
           <div className="logo">
             <a href="#" className="account-btn">
-              <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg
+                width="40"
+                height="40"
+                viewBox="0 0 40 40"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
                 <circle cx="20" cy="20" r="18" stroke="white" strokeWidth="3" />
-                <path d="M15 20H25M25 20L21 16M25 20L21 24" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+                <path
+                  d="M15 20H25M25 20L21 16M25 20L21 24"
+                  stroke="white"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
               </svg>
             </a>
           </div>
@@ -64,7 +97,6 @@ function App() {
             <strong>Black Out</strong> 
           </button>
         </nav>
-
 
         {/* Zone principale (Clicker) */}
         <div className="flex-1 bg-[url('background_click.png')] bg-cover bg-center border-2 border-[#5F6EFF] rounded-md p-5 flex flex-col items-center justify-center">
@@ -89,14 +121,21 @@ function App() {
         {/* Améliorations */}
         <div className="bg-gray-800 rounded-md p-4 flex flex-col">
           <div className="flex space-x-3">
-            <button className="actionButton">
-              <img
-                src="amélioration\clientregulier2.png"
-                alt="Action 1"
-                className="w-15 h-15"
-              />{" "}
-              {/* Améliorations */}
-            </button>
+            {unlockedEvolutions.map((evolution) => (
+              <button
+                onClick={() => evoluateUpgrade(evolution.upgradeId)}
+                className="actionButton"
+                key={evolution.upgradeId}
+              >
+                <img
+                  key={evolution.id}
+                  src={evolution.evolution.image}
+                  alt="Action 1"
+                  className="w-15 h-15"
+                />
+              </button>
+            ))}{" "}
+            {/* Améliorations */}
           </div>
         </div>
 
@@ -105,7 +144,7 @@ function App() {
           <ul className="list-none p-0">
             {upgradeList.map((upgrade) => {
               const currentQuantity =
-                useGameStore.getState().upgrades[upgrade.id] || 0;
+                useGameStore.getState().upgrades[upgrade.id]?.count || 0;
               const cost = Math.floor(
                 upgrade.baseCost *
                   Math.pow(upgrade.upgradeCostMultiplier, currentQuantity)

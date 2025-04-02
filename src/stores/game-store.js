@@ -4,10 +4,12 @@ import upgradeList from "../utils/upgrade";
 
 const useGameStore = create(
   persist((set, get) => ({
-    alcoholCount: 0, // Initial value are in mL
+    alcoholCount: 100000000, // Initial value are in mL
     alcoholPerClick: 1,
     alcoholPerSecond: 0,
-    upgrades: {}, // List of upgrades {id: {count: number, multiplier: number}}
+    upgrades: {
+      // Example: { id: 1, count: 0, currentEvolution: 0 }
+    }, // List of upgrades {id: {count: number, multiplier: number}}
 
     clickMultiplier: 1,
     secondMultiplier: 1,
@@ -25,13 +27,52 @@ const useGameStore = create(
         alcoholCount: state.alcoholCount + amount * secondMultiplier,
       }));
     },
+    evoluateUpgrade: (upgradeId) => {
+      const { alcoholCount, upgrades } = get();
+      const upgrade = upgradeList.find((u) => u.id === upgradeId);
+      if (!upgrade) return console.warn("Upgrade not found");
+      const currentQuantity = upgrades[upgradeId]?.count || 0;
 
+      const currentEvolution = upgrades[upgradeId]?.currentEvolution ?? -1;
+      const nextEvolution = upgrade.evolution[currentEvolution + 1];
+
+      if (!nextEvolution) return console.warn("No next evolution");
+
+      const cost = Math.floor(
+        nextEvolution.cost *
+          Math.pow(upgrade.upgradeCostMultiplier, currentQuantity)
+      );
+
+      if (alcoholCount >= cost) {
+        set((state) => {
+          upgrade.onEvolution(
+            currentQuantity,
+            upgrade.evolution[currentEvolution],
+            nextEvolution
+          );
+          return {
+            alcoholCount: state.alcoholCount - cost,
+            upgrades: {
+              ...state.upgrades,
+              [upgradeId]: {
+                count: currentQuantity,
+                currentEvolution: currentEvolution + 1,
+              },
+            },
+          };
+        });
+      }
+    },
     buyUpgrade: (upgradeId) => {
       const { alcoholCount, upgrades } = get();
       const upgrade = upgradeList.find((u) => u.id === upgradeId);
       if (!upgrade) return console.warn("Upgrade not found");
 
-      const currentQuantity = upgrades[upgradeId] || 0;
+      const currentQuantity = upgrades[upgradeId]?.count || 0;
+      const currentEvolution = upgrades[upgradeId]?.currentEvolution ?? -1;
+      const currentMultiplier =
+        upgrade.evolution?.[currentEvolution]?.multiplier || 1;
+
       const cost = Math.floor(
         upgrade.baseCost *
           Math.pow(upgrade.upgradeCostMultiplier, currentQuantity)
@@ -39,12 +80,15 @@ const useGameStore = create(
 
       if (alcoholCount >= cost) {
         set((state) => {
-          upgrade.effect(state);
+          upgrade.effect(currentMultiplier);
           return {
             alcoholCount: state.alcoholCount - cost,
             upgrades: {
               ...state.upgrades,
-              [upgradeId]: currentQuantity + 1,
+              [upgradeId]: {
+                count: currentQuantity + 1,
+                currentEvolution: currentEvolution,
+              },
             },
           };
         });
@@ -77,7 +121,7 @@ const useGameStore = create(
     },
     resetGame: () => {
       set(() => ({
-        alcoholCount: 0,
+        alcoholCount: 100000000,
         alcoholPerClick: 1,
         alcoholPerSecond: 0,
         upgrades: {},
