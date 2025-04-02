@@ -79,6 +79,12 @@ const useGameStore = create(
   {
     name: "clickandcuit:gameState",
     getStorage: () => localStorage,
+    partialize: (state) =>
+      Object.fromEntries(
+        Object.entries(state).filter(
+          ([key]) => !["clickMultiplier", "secondMultiplier"].includes(key)
+        )
+      ),
   }
 );
 
