@@ -58,24 +58,37 @@ function App() {
 
   return (
     <div className="w-screen h-screen bg-[#14171F] text-white p-5 flex gap-x-8">
-      <button onClick={resetGame}>reset</button>
       {/* Gauche : Navbar + Zone principale */}
       <div className="w-2/3 flex flex-col gap-4">
         {/* Navbar */}
-        <nav className="flex justify-center space-x-4 w-full">
-          <button className="navButton">
-            <strong>Statistiques</strong>
-          </button>
-          <button className="navButton">
-            <strong>Améliorations</strong>
-          </button>
-          <button className="navButton">
-            <strong>Classement</strong>
+        <nav className="flex justify-between items-center w-full px-4 py-2 text-white">
+          {/* Logo à gauche */}
+          <div className="logo">
+            <a href="#" className="account-btn">
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="20" cy="20" r="18" stroke="white" strokeWidth="3" />
+                <path d="M15 20H25M25 20L21 16M25 20L21 24" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </a>
+          </div>
+
+          {/* Boutons au centre */}
+          <div className="flex space-x-4">
+            <button className="navButton"><strong>Statistiques</strong></button>
+            <button className="navButton"><strong>Améliorations</strong></button>
+            <button className="navButton"><strong>Classement</strong></button>
+            <button className="navButton"><strong>Boutique</strong></button>
+          </div>
+
+          {/* Bouton Ascension à droite */}
+          <button className="blackout">
+            <strong onClick={resetGame}>Black Out</strong> 
           </button>
         </nav>
 
+
         {/* Zone principale (Clicker) */}
-        <div className="flex-1 bg-[url('background_click.png')] bg-cover bg-center border-2 rounded-md p-5 flex flex-col items-center justify-center">
+        <div className="flex-1 bg-[url('background_click.png')] bg-cover bg-center border-2 border-[#5F6EFF] rounded-md p-5 flex flex-col items-center justify-center">
           <p className="text-3xl font-bold">
             {conversionUtils.mLToString(displayedAlcoholCount)}{" "}
           </p>
@@ -133,7 +146,7 @@ function App() {
                   className={`w-full px-3 py-2 mt-2 rounded-[10px] text-white flex justify-between items-center border-1 border-[#313b47]
                     ${
                       alcoholCount >= cost
-                        ? "bg-[#14171F] border-[#14171F] cursor-pointer hover:border-1 hover:border-[white] hover:shadow-inner active:bg-[#0d141b]"
+                        ? "bg-[#14171F] border-[#14171F] cursor-pointer hover:border-1 hover:border-[#5F6EFF] hover:shadow-inner active:bg-[#0d141b]"
                         : "bg-[#313B47]"
                     }`}
                 >
