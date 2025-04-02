@@ -52,7 +52,7 @@ function App() {
           </div>
 
           {/* Boutons au centre */}
-          <div className="flex space-x-4">
+          <div className="flex space-x-4 text-[0.8vw]">
             <button className="navButton"><strong>Statistiques</strong></button>
             <button className="navButton"><strong>Améliorations</strong></button>
             <button className="navButton"><strong>Classement</strong></button>
@@ -60,18 +60,18 @@ function App() {
           </div>
 
           {/* Bouton Ascension à droite */}
-          <button className="blackout">
-            <strong onClick={resetGame}>Black Out</strong> 
+          <button onClick={resetGame} className="blackout text-[0.8vw]">
+            <strong>Black Out</strong> 
           </button>
         </nav>
 
 
         {/* Zone principale (Clicker) */}
         <div className="flex-1 bg-[url('background_click.png')] bg-cover bg-center border-2 border-[#5F6EFF] rounded-md p-5 flex flex-col items-center justify-center">
-          <p className="text-3xl font-bold">
+          <p className="text-[2.5vw] font-bold">
             {conversionUtils.mLToString(displayedAlcoholCount)}{" "}
           </p>
-          <p className="text-lg font-semibold">
+          <p className="text-[1vw] font-semibold">
             Alcool par seconde :{" "}
             {conversionUtils.mLToString(displayedAlcoholPerSecond)}
           </p>
@@ -192,7 +192,7 @@ function App() {
         {/* Succès */}
         <div className="bg-[#313B47] rounded-t-lg rounded-b-lg h-full flex flex-col justify-start items-center">
           <div className="bg-gray-800 rounded-t-lg p-2 w-full">
-            <h2 className="text-xl font-bold text-center mb-3">Succès</h2>
+            <h2 className="text-[1vw] font-bold text-center">Succès</h2>
           </div>
           <div className="bg-[#14171F] rounded-full w-12 h-12 mx-4 my-4 shadow-inner"></div>
         </div>
