@@ -75,18 +75,7 @@ function App() {
         <div className="bg-gray-800 rounded-md p-4 flex flex-col">
           <div className="flex space-x-3">
             <button className="actionButton">
-              <img
-                src="/shop/ALCOOLFORT.svg"
-                alt="Action 1"
-                className="w-15 h-15"
-              />
-            </button>
-            <button className="actionButton">
-              <img
-                src="/shop/ALCOOLFORT.svg"
-                alt="Action 2"
-                className="w-15 h-15"
-              />
+              <img src="amélioration\clientregulier2.png" alt="Action 1" className="w-15 h-15" /> {/* Améliorations */}
             </button>
           </div>
         </div>
@@ -157,9 +146,11 @@ function App() {
         </div>
 
         {/* Succès */}
-        <div className="bg-gray-800 rounded-md p-4 h-full">
-          <h2 className="text-xl font-bold text-center mb-3">Succès</h2>
-          <p className="text-center italic">À débloquer...</p>
+        <div className="bg-[#313B47] rounded-t-lg rounded-b-lg h-full flex flex-col justify-start items-center">
+          <div className="bg-gray-800 rounded-t-lg p-2 w-full">
+            <h2 className="text-xl font-bold text-center mb-3">Succès</h2>
+          </div>
+          <div className="bg-[#14191F] rounded-full w-12 h-12 mx-4 my-4 shadow-inner"></div>
         </div>
       </div>
     </div>
