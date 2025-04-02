@@ -35,7 +35,7 @@ function App() {
   }, [alcoholPerSecond, addAlcoholOnSecond]);
 
   return (
-    <div className="w-screen h-screen bg-gray-900 text-white p-5 flex gap-x-8">
+    <div className="w-screen h-screen bg-[#14171F] text-white p-5 flex gap-x-8">
       {/* Gauche : Navbar + Zone principale */}
       <div className="w-2/3 flex flex-col gap-4">
         {/* Navbar */}
@@ -97,7 +97,7 @@ function App() {
                   disabled={alcoholCount < cost}
                   className={`w-full px-3 py-2 mt-2 rounded-[10px] text-white flex justify-between items-center border-1 border-[#313b47]
                     ${alcoholCount >= cost 
-                      ? "bg-[#14191F] border-[#14191F] cursor-pointer hover:border-1 hover:border-[white] hover:shadow-inner active:bg-[#0d141b]"
+                      ? "bg-[#14171F] border-[#14171F] cursor-pointer hover:border-1 hover:border-[white] hover:shadow-inner active:bg-[#0d141b]"
                       : "bg-[#313B47]"
                     }`}
                 >
@@ -152,7 +152,7 @@ function App() {
           <div className="bg-gray-800 rounded-t-lg p-2 w-full">
             <h2 className="text-xl font-bold text-center mb-3">Succès</h2>
           </div>
-          <div className="bg-[#14191F] rounded-full w-12 h-12 mx-4 my-4 shadow-inner"></div>
+          <div className="bg-[#14171F] rounded-full w-12 h-12 mx-4 my-4 shadow-inner"></div>
         </div>
       </div>
     </div>
