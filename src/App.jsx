@@ -65,27 +65,46 @@ function App() {
           {/* Logo à gauche */}
           <div className="logo">
             <a href="#" className="account-btn">
-              <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg
+                width="40"
+                height="40"
+                viewBox="0 0 40 40"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
                 <circle cx="20" cy="20" r="18" stroke="white" strokeWidth="3" />
-                <path d="M15 20H25M25 20L21 16M25 20L21 24" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+                <path
+                  d="M15 20H25M25 20L21 16M25 20L21 24"
+                  stroke="white"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
               </svg>
             </a>
           </div>
 
           {/* Boutons au centre */}
           <div className="flex space-x-4">
-            <button className="navButton"><strong>Statistiques</strong></button>
-            <button className="navButton"><strong>Améliorations</strong></button>
-            <button className="navButton"><strong>Classement</strong></button>
-            <button className="navButton"><strong>Boutique</strong></button>
+            <button className="navButton">
+              <strong>Statistiques</strong>
+            </button>
+            <button className="navButton">
+              <strong>Améliorations</strong>
+            </button>
+            <button className="navButton">
+              <strong>Classement</strong>
+            </button>
+            <button className="navButton">
+              <strong>Boutique</strong>
+            </button>
           </div>
 
           {/* Bouton Ascension à droite */}
-          <button className="blackout">
-            <strong onClick={resetGame}>Black Out</strong> 
+          <button onClick={resetGame} className="blackout">
+            <strong>Black Out</strong>
           </button>
         </nav>
-
 
         {/* Zone principale (Clicker) */}
         <div className="flex-1 bg-[url('background_click.png')] bg-cover bg-center border-2 border-[#5F6EFF] rounded-md p-5 flex flex-col items-center justify-center">
