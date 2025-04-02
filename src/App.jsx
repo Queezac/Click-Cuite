@@ -13,6 +13,7 @@ function App() {
     addAlcoholOnSecond,
     addAlcoholOnClick,
     buyUpgrade,
+    evoluateUpgrade,
     resetGame,
   } = useGameStore();
 
@@ -20,7 +21,27 @@ function App() {
 
   const displayedAlcoholCount = useCounterAnimated(alcoholCount, 100);
 
-  const displayedAlcoholPerSecond = useCounterAnimated(alcoholPerSecond, 500);
+  const unlockedEvolutions = upgradeList
+    .map((upgrade) => {
+      const currentQuantity =
+        useGameStore.getState().upgrades?.[upgrade.id]?.count ?? 0;
+
+      const currentEvolutionIndex =
+        useGameStore.getState().upgrades?.[upgrade.id]?.currentEvolution ?? -1;
+
+      const availableEvolution = upgrade.evolution?.find(
+        (evolution, index) =>
+          evolution.unlockAt <= currentQuantity && index > currentEvolutionIndex
+      );
+
+      return availableEvolution
+        ? {
+            upgradeId: upgrade.id,
+            evolution: availableEvolution,
+          }
+        : null;
+    })
+    .filter(Boolean);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -59,8 +80,7 @@ function App() {
             {conversionUtils.mLToString(displayedAlcoholCount)}{" "}
           </p>
           <p className="text-lg font-semibold">
-            Alcool par seconde :{" "}
-            {conversionUtils.mLToString(displayedAlcoholPerSecond)}
+            Alcool par seconde : {conversionUtils.mLToString(alcoholPerSecond)}
           </p>
           <button
             onClick={() => addAlcoholOnClick(alcoholPerClick)}
@@ -76,14 +96,21 @@ function App() {
         {/* Améliorations */}
         <div className="bg-gray-800 rounded-md p-4 flex flex-col">
           <div className="flex space-x-3">
-            <button className="actionButton">
-              <img
-                src="amélioration\clientregulier2.png"
-                alt="Action 1"
-                className="w-15 h-15"
-              />{" "}
-              {/* Améliorations */}
-            </button>
+            {unlockedEvolutions.map((evolution) => (
+              <button
+                onClick={() => evoluateUpgrade(evolution.upgradeId)}
+                className="actionButton"
+                key={evolution.upgradeId}
+              >
+                <img
+                  key={evolution.id}
+                  src={evolution.evolution.image}
+                  alt="Action 1"
+                  className="w-15 h-15"
+                />
+              </button>
+            ))}{" "}
+            {/* Améliorations */}
           </div>
         </div>
 
@@ -92,7 +119,7 @@ function App() {
           <ul className="list-none p-0">
             {upgradeList.map((upgrade) => {
               const currentQuantity =
-                useGameStore.getState().upgrades[upgrade.id] || 0;
+                useGameStore.getState().upgrades[upgrade.id]?.count || 0;
               const cost = Math.floor(
                 upgrade.baseCost *
                   Math.pow(upgrade.upgradeCostMultiplier, currentQuantity)
