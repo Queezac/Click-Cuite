@@ -20,8 +20,7 @@ export const Event = () => {
       <div className="bg-gray-800 rounded-b-lg p-4">
         {activeEvent ? (
           <div>
-            <p className="text-center">Événement actif : {activeEvent.name}</p>
-            <p className="text-center">{activeEvent.description}</p>
+            <p className="text-center italic">{activeEvent.description}</p>
           </div>
         ) : (
           <p className="text-center italic">Attendez un événement</p>

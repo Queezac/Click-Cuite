@@ -25,12 +25,28 @@ const upgradeList = [
     upgradeCostMultiplier: 1.2,
     evolution: [
       {
-        name: "Verre XXL +",
-        image: "/amélioration/clientregulier2.png",
-        description: "Produit automatiquement 0.2 cl/s",
+        name: "Pinte renforcée",
+        image: "/amélioration/verrexxl1.png",
+        description: "Augmente la production de clics de x2 et la production de verre XXL de x2.",
+        multiplier: 2,
+        cost: 200,
+        unlockAt: 1,
+      },
+      {
+        name: "Fontaine de bière",
+        image: "/amélioration/verrexxl2.png",
+        description: "Augmente la production de clics de x2 et la production de verre XXL de x2.",
         multiplier: 2,
         cost: 200,
         unlockAt: 10,
+      },
+      {
+        name: "Tonneau Express",
+        image: "/amélioration/verrexxl3.png",
+        description: "Chaque construction (hors Verre XXL) génère +0.1 cl/clic supplémentaire.",
+        multiplier: 2,
+        cost: 200,
+        unlockAt: 50,
       },
     ],
   },
@@ -45,7 +61,33 @@ const upgradeList = [
       const { addAlcoholPerClick } = useGameStore.getState();
       addAlcoholPerClick(1);
     },
+    onEvolution: (quantity, oldEvolution, newEvolution) => {
+      const { addAlcoholPerSecond } = useGameStore.getState();
+      addAlcoholPerSecond(
+        0.1 *
+          quantity *
+          (newEvolution.multiplier - (oldEvolution?.multiplier ?? 1))
+      );
+    },
     upgradeCostMultiplier: 1.2,
+    evolution: [
+      {
+        name: "Pilier de comptoir",
+        image: "/amélioration/clientregulier1.png",
+        description: "Augmente la production de chaque client régulier de x2.",
+        multiplier: 2,
+        cost: 200,
+        unlockAt: 1,
+      },
+      {
+        name: "Tavernier Fantôme",
+        image: "/amélioration/clientregulier2.png",
+        description: "Augmente la production de chaque client régulier de x2.",
+        multiplier: 2,
+        cost: 200,
+        unlockAt: 50,
+      },
+    ],
   },
   {
     id: 3,
@@ -58,7 +100,33 @@ const upgradeList = [
       const { addAlcoholPerSecond } = useGameStore.getState();
       addAlcoholPerSecond(5);
     },
+    onEvolution: (quantity, oldEvolution, newEvolution) => {
+      const { addAlcoholPerSecond } = useGameStore.getState();
+      addAlcoholPerSecond(
+        0.1 *
+          quantity *
+          (newEvolution.multiplier - (oldEvolution?.multiplier ?? 1))
+      );
+    },
     upgradeCostMultiplier: 1.2,
+    evolution: [
+      {
+        name: "Happy Hour Éternel",
+        image: "/amélioration/groupeamis1.png",
+        description: "Augmente la production de chaque groupe d'amis de x2.",
+        multiplier: 2,
+        cost: 200,
+        unlockAt: 1,
+      },
+      {
+        name: "Enterrement de vie de garçon",
+        image: "/amélioration/groupeamis2.png",
+        description: "Augmente la production de chaque groupe d'amis de x2.",
+        multiplier: 2,
+        cost: 200,
+        unlockAt: 50,
+      },
+    ],
   },
   {
     id: 4,
@@ -71,7 +139,33 @@ const upgradeList = [
       const { addAlcoholPerSecond } = useGameStore.getState();
       addAlcoholPerSecond(20);
     },
+    onEvolution: (quantity, oldEvolution, newEvolution) => {
+      const { addAlcoholPerSecond } = useGameStore.getState();
+      addAlcoholPerSecond(
+        0.1 *
+          quantity *
+          (newEvolution.multiplier - (oldEvolution?.multiplier ?? 1))
+      );
+    },
     upgradeCostMultiplier: 1.2,
+    evolution: [
+      {
+        name: "Robot serveur",
+        image: "/amélioration/serveurrapide1.png",
+        description: "Augmente la production de chaque serveur rapide de x2.",
+        multiplier: 2,
+        cost: 200,
+        unlockAt: 1,
+      },
+      {
+        name: "Bar en libre-service",
+        image: "/amélioration/serveurrapide2.png",
+        description: "Augmente la production de chaque serveur rapide de x2.",
+        multiplier: 2,
+        cost: 200,
+        unlockAt: 50,
+      },
+    ],
   },
   {
     id: 5,
@@ -84,7 +178,33 @@ const upgradeList = [
       const { addAlcoholPerSecond } = useGameStore.getState();
       addAlcoholPerSecond(100);
     },
+    onEvolution: (quantity, oldEvolution, newEvolution) => {
+      const { addAlcoholPerSecond } = useGameStore.getState();
+      addAlcoholPerSecond(
+        0.1 *
+          quantity *
+          (newEvolution.multiplier - (oldEvolution?.multiplier ?? 1))
+      );
+    },
     upgradeCostMultiplier: 1.2,
+    evolution: [
+      {
+        name: "Machine infernale",
+        image: "/amélioration/tireuseautomatique1.png",
+        description: "Augmente la production de chaque tireuse automatique de x2.",
+        multiplier: 2,
+        cost: 200,
+        unlockAt: 1,
+      },
+      {
+        name: "Réserve infinie",
+        image: "/amélioration/tireuseautomatique2.png",
+        description: "Augmente la production de chaque tireuse automatique de x2.",
+        multiplier: 2,
+        cost: 200,
+        unlockAt: 50,
+      },
+    ],
   },
   {
     id: 6,
@@ -110,7 +230,33 @@ const upgradeList = [
       const { addAlcoholPerSecond } = useGameStore.getState();
       addAlcoholPerSecond(1000);
     },
+    onEvolution: (quantity, oldEvolution, newEvolution) => {
+      const { addAlcoholPerSecond } = useGameStore.getState();
+      addAlcoholPerSecond(
+        0.1 *
+          quantity *
+          (newEvolution.multiplier - (oldEvolution?.multiplier ?? 1))
+      );
+    },
     upgradeCostMultiplier: 1.2,
+    evolution: [
+      {
+        name: "Tournée Express",
+        image: "/amélioration/machineshots1.png",
+        description: "Augmente la production de chaque machine à shots de x2.",
+        multiplier: 2,
+        cost: 200,
+        unlockAt: 1,
+      },
+      {
+        name: "Concours du plus gros buveur",
+        image: "/amélioration/machineshots2.png",
+        description: "Augmente la production de chaque machine à shots de x2.",
+        multiplier: 2,
+        cost: 200,
+        unlockAt: 50,
+      },
+    ],
   },
   {
     id: 8,
@@ -123,7 +269,33 @@ const upgradeList = [
       const { addAlcoholPerSecond } = useGameStore.getState();
       addAlcoholPerSecond(2500);
     },
+    onEvolution: (quantity, oldEvolution, newEvolution) => {
+      const { addAlcoholPerSecond } = useGameStore.getState();
+      addAlcoholPerSecond(
+        0.1 *
+          quantity *
+          (newEvolution.multiplier - (oldEvolution?.multiplier ?? 1))
+      );
+    },
     upgradeCostMultiplier: 1.2,
+    evolution: [
+      {
+        name: "Compétition locale",
+        image: "/amélioration/tournoiflechettes1.png",
+        description: "Augmente la production de chaque tournoi de fléchettes de x2.",
+        multiplier: 2,
+        cost: 200,
+        unlockAt: 1,
+      },
+      {
+        name: "Championnat des bars",
+        image: "/amélioration/tournoiflechettes2.png",
+        description: "Augmente la production de chaque tournoi de fléchettes de x2.",
+        multiplier: 2,
+        cost: 200,
+        unlockAt: 50,
+      },
+    ],
   },
   {
     id: 9,
@@ -136,7 +308,33 @@ const upgradeList = [
       const { addAlcoholPerSecond } = useGameStore.getState();
       addAlcoholPerSecond(10000);
     },
+    onEvolution: (quantity, oldEvolution, newEvolution) => {
+      const { addAlcoholPerSecond } = useGameStore.getState();
+      addAlcoholPerSecond(
+        0.1 *
+          quantity *
+          (newEvolution.multiplier - (oldEvolution?.multiplier ?? 1))
+      );
+    },
     upgradeCostMultiplier: 1.2,
+    evolution: [
+      {
+        name: "Jetons gratuits",
+        image: "/amélioration/machinesous1.png",
+        description: "Augmente la production de chaque machine à sous de x2.",
+        multiplier: 2,
+        cost: 200,
+        unlockAt: 1,
+      },
+      {
+        name: "Truquée par le patron",
+        image: "/amélioration/machinesous2.png",
+        description: "Augmente la production de chaque machine à sous de x2.",
+        multiplier: 2,
+        cost: 200,
+        unlockAt: 50,
+      },
+    ],
   },
   {
     id: 10,
@@ -188,7 +386,33 @@ const upgradeList = [
       const { addAlcoholPerSecond } = useGameStore.getState();
       addAlcoholPerSecond(1000000);
     },
+    onEvolution: (quantity, oldEvolution, newEvolution) => {
+      const { addAlcoholPerSecond } = useGameStore.getState();
+      addAlcoholPerSecond(
+        0.1 *
+          quantity *
+          (newEvolution.multiplier - (oldEvolution?.multiplier ?? 1))
+      );
+    },
     upgradeCostMultiplier: 1.2,
+    evolution: [
+      {
+        name: "Boisson des Dieux",
+        image: "/amélioration/dernierrhum1.png",
+        description: "Augmente la production de chaque Dernier Rhum de x2.",
+        multiplier: 2,
+        cost: 200,
+        unlockAt: 1,
+      },
+      {
+        name: "Mythe alcoolique",
+        image: "/amélioration/dernierrhum2.png",
+        description: "Augmente la production de chaque Dernier Rhum de x2.",
+        multiplier: 2,
+        cost: 200,
+        unlockAt: 50,
+      },
+    ],
   },
 ];
 
