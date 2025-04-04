@@ -1,8 +1,6 @@
 import { create } from "zustand";
 import useGameStore from "./game-store";
 
-const { setClickMultiplier, setSecondMultiplier } = useGameStore.getState();
-
 const eventsList = [
   {
     id: 1,
@@ -11,10 +9,14 @@ const eventsList = [
     description: "Hé patron, remets-moi ça, je tiens encore debout !", //Les prix sont réduits, mais la consommation augmente !
     unlockAt: 1,
     onStart: () => {
+      const { setClickMultiplier, setSecondMultiplier } =
+        useGameStore.getState();
       setClickMultiplier(2);
       setSecondMultiplier(2);
     },
     onEnd: () => {
+      const { setClickMultiplier, setSecondMultiplier } =
+        useGameStore.getState();
       setClickMultiplier(1);
       setSecondMultiplier(1);
     },
@@ -27,10 +29,15 @@ const eventsList = [
     description: "Ça marche, mais si tu tombes, c’est pas moi qui te ramasse !", //Double les cliques !
     unlockAt: 1,
     onStart: () => {
+      const { setClickMultiplier, setSecondMultiplier } =
+        useGameStore.getState();
+
       setClickMultiplier(0.5);
       setSecondMultiplier(0.5);
     },
     onEnd: () => {
+      const { setClickMultiplier, setSecondMultiplier } =
+        useGameStore.getState();
       setClickMultiplier(1);
       setSecondMultiplier(1);
     },
@@ -43,10 +50,16 @@ const eventsList = [
     description: "Hips… C’est moi ou le sol bouge tout seul ?", //La boisson est plus corsée, +2% de L consommé en +
     unlockAt: 1,
     onStart: () => {
+      const { setClickMultiplier, setSecondMultiplier } =
+        useGameStore.getState();
+
       setClickMultiplier(0.5);
       setSecondMultiplier(0.5);
     },
     onEnd: () => {
+      const { setClickMultiplier, setSecondMultiplier } =
+        useGameStore.getState();
+
       setClickMultiplier(1);
       setSecondMultiplier(1);
     },
@@ -60,10 +73,16 @@ const eventsList = [
       "Allez, on garde le rythme ! Plus ils boivent, plus les pourboires tombent !", //Les serveurs apportent les verres plus rapidement, boostant la consommation automatique !
     unlockAt: 1,
     onStart: () => {
+      const { setClickMultiplier, setSecondMultiplier } =
+        useGameStore.getState();
+
       setClickMultiplier(0.5);
       setSecondMultiplier(0.5);
     },
     onEnd: () => {
+      const { setClickMultiplier, setSecondMultiplier } =
+        useGameStore.getState();
+
       setClickMultiplier(1);
       setSecondMultiplier(1);
     },
@@ -76,10 +95,16 @@ const eventsList = [
     description: "Tous les gains sont divisés par 2 pendant 5 minutes.", //Tous les gains sont divisés par 2 pendant 5 minutes.
     unlockAt: 1,
     onStart: () => {
+      const { setClickMultiplier, setSecondMultiplier } =
+        useGameStore.getState();
+
       setClickMultiplier(0.5);
       setSecondMultiplier(0.5);
     },
     onEnd: () => {
+      const { setClickMultiplier, setSecondMultiplier } =
+        useGameStore.getState();
+
       setClickMultiplier(1);
       setSecondMultiplier(1);
     },
@@ -92,10 +117,16 @@ const eventsList = [
     description: "Attendez un événement",
     unlockAt: 1,
     onStart: () => {
+      const { setClickMultiplier, setSecondMultiplier } =
+        useGameStore.getState();
+
       setClickMultiplier(0.5);
       setSecondMultiplier(0.5);
     },
     onEnd: () => {
+      const { setClickMultiplier, setSecondMultiplier } =
+        useGameStore.getState();
+
       setClickMultiplier(1);
       setSecondMultiplier(1);
     },

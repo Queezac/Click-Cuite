@@ -3,7 +3,7 @@ import { persist } from "zustand/middleware";
 import upgradeList from "../utils/upgrade";
 import { useEventStore } from "./event-store";
 
-const INITIAL_VALUE = 0;
+const INITIAL_VALUE = 1000000000000;
 const useGameStore = create(
   persist((set, get) => ({
     alcoholCount: INITIAL_VALUE, // Initial value are in mL

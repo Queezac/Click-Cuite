@@ -16,7 +16,6 @@ const upgradeList = [
     },
     onEvolution: (quantity, oldEvolution, newEvolution) => {
       const { addAlcoholPerSecond } = useGameStore.getState();
-      console.log(newEvolution.multiplier - (oldEvolution?.multiplier ?? 1));
       addAlcoholPerSecond(
         0.1 *
           quantity *
