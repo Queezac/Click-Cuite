@@ -231,9 +231,6 @@ function App() {
           <div className="bg-gray-800 rounded-b-lg p-4">
             {activeEvent ? (
               <div>
-                <p className="text-center">
-                  Événement actif : {activeEvent.name}
-                </p>
                 <p className="text-center">{activeEvent.description}</p>
               </div>
             ) : (
