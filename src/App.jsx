@@ -1,41 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Clicker } from "./components/clicker";
 import { Event } from "./components/event";
 import { Navbar } from "./components/navbar";
 import { Shop } from "./components/shop";
 import { Upgrade } from "./components/upgrade";
-import { useEventStore } from "./stores/event-store";
-import useGameStore from "./stores/game-store";
-import conversionUtils from "./utils/conversion";
 
 function App() {
-  const { alcoholPerSecond, addAlcoholOnSecond } = useGameStore();
-
-  const { activeEvent } = useEventStore();
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (alcoholPerSecond > 0) {
-        addAlcoholOnSecond(alcoholPerSecond / 10);
-        const currentAlcoholCount = useGameStore.getState().alcoholCount;
-        document.title = `${conversionUtils.mLToString(
-          currentAlcoholCount
-        )} - Click Cuite`;
-      }
-    }, 100);
-    return () => clearInterval(interval);
-  }, [alcoholPerSecond, addAlcoholOnSecond]);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (!activeEvent && Math.random() < 0.2) {
-        useEventStore.getState().triggerRandomEvent();
-      }
-    }, 10);
-
-    return () => clearInterval(interval);
-  });
-
   return (
     <div className="w-screen h-screen bg-[#14171F] text-white p-5 flex gap-x-8">
       {/* Gauche : Navbar + Zone principale */}

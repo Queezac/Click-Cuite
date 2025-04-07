@@ -121,6 +121,12 @@ const useGameStore = create(
         secondMultiplier: multiplier,
       }));
     },
+    updateAlcoholPerSecond: () => {
+      const { alcoholPerSecond, addAlcoholOnSecond } = get();
+      if (alcoholPerSecond > 0) {
+        addAlcoholOnSecond(alcoholPerSecond / 10);
+      }
+    },
     resetGame: () => {
       useEventStore.getState().clearEvent();
       set(() => ({

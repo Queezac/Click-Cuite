@@ -1,7 +1,7 @@
 import useGameStore from "../stores/game-store";
 
 export const Navbar = () => {
-  const { resetGame } = useGameStore();
+  const { resetGame } = useGameStore((state) => state.resetGame);
 
   return (
     <nav className="flex justify-between items-center w-full px-4 py-2 text-white">
