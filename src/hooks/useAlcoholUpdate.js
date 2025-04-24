@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import useGameStore from "../stores/game-store";
 
-const ALCOHOL_UPDATE_INTERVAL = 1000;
+const ALCOHOL_UPDATE_INTERVAL = 100;
 
 export const useAlcoholUpdater = () => {
   useEffect(() => {

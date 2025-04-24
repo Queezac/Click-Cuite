@@ -45,7 +45,7 @@ export const Upgrade = () => {
         </button>
       ))
     ) : (
-      <span className="text-white text-lg text-center">Améliorations</span>
+      <span className="text-white italic text-center">Améliorations</span>
     )}
   </div>
 </div>

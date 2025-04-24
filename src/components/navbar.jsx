@@ -44,7 +44,7 @@ export const Navbar = () => {
       </div>
 
       {/* Bouton Ascension à droite */}
-      <button onClick={resetGame} className="blackout text-[0.8vw]">
+      <button onClick={()=>resetGame()} className="blackout text-[0.8vw]">
         <strong>Black Out</strong>
       </button>
     </nav>

@@ -35,7 +35,7 @@ function App() {
           <div className="bg-gray-800 rounded-t-lg p-2 w-full">
             <h2 className="text-[1vw] font-bold text-center">Succès</h2>
           </div>
-          <div className="bg-[#14171F] rounded-full w-12 h-12 mx-4 my-4 shadow-inner"></div>
+          <p className="p-5">Arrive bientôt...</p>
         </div>
       </div>
     </div>
