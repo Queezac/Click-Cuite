@@ -22,19 +22,19 @@ export const Clicker = () => {
   useAlcoholUpdater();
   useRandomEventTrigger();
 
-  const addParticleAroundImage = () => {
+  const addParticleOnCursor = (e) => {
     const particle = document.createElement("div");
-    particle.innerText = conversionUtils.mLToString(alcoholPerSecond);
-    particle.className = "absolute rounded-full hop-fall text-[6px]";
-    particle.style.left = `${Math.random() * 100}%`;
-    particle.style.top = `${Math.random() * 100}%`;
+    particle.innerText = `+ ${conversionUtils.mLToString(alcoholPerSecond)}`;
+    particle.className = "absolute rounded-full bounceAndUp text-sm text-bold";
+    particle.style.left = `${e.clientX}px`;
+    particle.style.top = `${e.clientY}px`;
     particle.style.transform = "translate(-50%, -50%)";
     particle.style.pointerEvents = "none";
     particle.style.zIndex = "10";
-    imgRef.current.appendChild(particle);
+    document.body.appendChild(particle);
     setTimeout(() => {
       particle.remove();
-    }, 1000);
+    }, 2000);
   };
 
   return (
@@ -46,8 +46,8 @@ export const Clicker = () => {
         Alcool par seconde : {conversionUtils.mLToString(alcoholPerSecond)}
       </p>
       <button
-        onClick={() => {
-          addParticleAroundImage();
+        onClick={(e) => {
+          addParticleOnCursor(e);
           addAlcoholOnClick(alcoholPerClick);
         }}
         className="mt-3 transition-transform transform active:scale-98"

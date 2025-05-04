@@ -93,24 +93,29 @@ body {
   pointer-events: none;
 }
 
-@keyframes hopFall {
+@keyframes bounceAndUp {
   0% {
     transform: translate(0, 0);
     opacity: 1;
   }
-  15% {
-    transform: translate(25px, -30px); /* saut plus arrondi */
-    easing: ease-out;
+  25% {
+    transform: translate(0.25em, -2em);
   }
-  30% {
-    transform: translate(30px, 0); /* retombe un peu */
+  50% {
+    transform: translate(-0.25em, -4em);
+    opacity: 1;
+  }
+  75% {
+    transform: translate(0.25em, -6em);
   }
   100% {
-    transform: translate(30px, 100vh); /* chute fluide */
-    opacity: 0.3;
+    transform: translate(0, -8em);
+    opacity: 0;
   }
 }
 
-.hop-fall {
-  animation: hopFall 2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+.bounceAndUp {
+  animation: bounceAndUp 2s linear forwards;
+  font-weight: 700;
+  color: white;
 }

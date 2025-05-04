@@ -1,13 +1,15 @@
 import React from "react";
 import { Clicker } from "./components/clicker";
 import { Event } from "./components/event";
+import UpgradeModal from "./components/modal/upgradeModal";
 import { Navbar } from "./components/navbar";
 import { Shop } from "./components/shop";
 import { Upgrade } from "./components/upgrade";
-
 function App() {
   return (
     <div className="w-screen h-screen bg-[#14171F] text-white p-5 flex gap-x-8">
+      <UpgradeModal isOpen={false}></UpgradeModal>
+
       {/* Gauche : Navbar + Zone principale */}
       <div className="w-2/3 flex flex-col gap-4">
         {/* Navbar */}
